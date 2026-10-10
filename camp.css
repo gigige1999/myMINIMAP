@@ -1,0 +1,19 @@
+.camp-scene{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;border:0;padding:0;margin:0;overflow:hidden;background:#dce5d4;color:#465540;outline:0}
+.camp-scene::backdrop{background:#dce5d4}
+.camp-scene[open]{display:block;animation:camp-arrive .7s cubic-bezier(.22,1,.36,1)}
+.camp-scene[data-night="true"]{background:#293f3b;color:#e1dfc6}
+.camp-scene canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}
+.camp-scene canvas:active{cursor:grabbing}
+.camp-scene:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 45%,#dce5d450);opacity:.55}
+.camp-scene[data-night="true"]:after{background:radial-gradient(ellipse at 50% 40%,transparent 45%,#293f3b60)}
+.camp-header{position:absolute;left:38px;top:33px;z-index:2;display:flex;gap:17px;align-items:center}
+.camp-close{display:grid;place-items:center;width:44px;height:44px;border:1px solid #83947435;border-radius:50%;background:#eff0df80;color:inherit;font-size:20px;font-family:Georgia,serif;transition:background .5s}
+.camp-close:hover{background:#f5f0db}.camp-close:focus-visible{outline:2px solid #879364;outline-offset:5px}
+.camp-title{margin:0;font-size:22px;font-weight:500;line-height:1.6}.camp-eyebrow{display:block;font-family:Georgia,serif;font-size:9px;letter-spacing:.2em;opacity:.58}
+.camp-caption{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;text-align:center;width:max-content;max-width:calc(100% - 36px);pointer-events:none}
+.camp-caption p{font-size:13px;line-height:1.9;letter-spacing:.08em;margin:0 0 9px}.camp-caption small{font-size:10px;opacity:.6;letter-spacing:.08em}
+.camp-scene[data-night="true"] .camp-close{background:#465c4e70;border-color:#bcc6a13b}.camp-scene[data-night="true"] .camp-close:hover{background:#65705a}
+.camp-error{position:absolute;inset:44% 20px auto;text-align:center;font-size:13px;line-height:1.9;z-index:2}
+@keyframes camp-arrive{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){.camp-header{top:23px;left:20px;gap:12px}.camp-title{font-size:20px}.camp-caption{bottom:34px}.camp-caption p{font-size:12px}.camp-caption small{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.camp-scene[open]{animation:none}.camp-close{transition:none}}

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#dce5d4">
+  <title>风栖之境 · 遗迹漫游</title>
+  <link rel="stylesheet" href="./journey.css?v=traveler-1">
+  <link rel="stylesheet" href="./gallery.css">
+  <link rel="stylesheet" href="./garden.css?v=journey-3">
+  <link rel="stylesheet" href="./garden-journal.css?v=journey-3">
+  <link rel="stylesheet" href="./camp.css?v=grove-2">
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="https://unpkg.com/howler@2.2.4/dist/howler.min.js"></script>
+</head>
+<body>
+  <main id="landing" class="screen active" aria-label="入口">
+    <div class="door-stage"><canvas id="doorCanvas" aria-label="石门前发光的猫耳白斗篷旅人，点击旅人启程"></canvas></div>
+    <button class="door-cta" id="enterBtn" aria-label="与小人一起进入地图">走进微光<span aria-hidden="true">→</span></button>
+  </main>
+  <section id="map" class="screen" aria-label="章节地图" inert>
+    <canvas id="mapCanvas" tabindex="0" aria-label="旅人地图：点击地面行走，方向键或 WASD 移动，拖动旋转视角" aria-describedby="travelerHelp"></canvas>
+    <header class="map-header">
+      <button class="icon-button" id="mapBack" aria-label="返回石门" title="返回石门"><i data-lucide="arrow-left"></i></button>
+      <div class="map-title"><span>THE QUIET LANDS</span><h1>风栖之境</h1></div>
+    </header>
+    <button class="icon-button map-atmosphere" id="mapNight" aria-label="切换夜晚模式" title="切换夜晚模式" aria-pressed="false"><i data-lucide="moon"></i></button>
+    <button id="journalOpen" class="journal-open" aria-label="手记背包"><i data-lucide="book-open" aria-hidden="true"></i><span>手记</span><small id="journalCount">0</small></button>
+    <aside id="gardenQuest" class="garden-quest is-collapsed" aria-labelledby="gardenTitle">
+      <button id="gardenToggle" class="garden-toggle" aria-expanded="false" aria-controls="gardenDetails" aria-label="展开种花任务"><span class="garden-task-flower" aria-hidden="true">✿</span><span id="gardenTitle">花与峡谷</span><small id="gardenFlowerCount">0 / 3</small><span class="garden-chevron" aria-hidden="true">⌄</span></button>
+      <div id="gardenDetails" class="garden-details" hidden>
+      <div id="gardenSteps" class="garden-steps" aria-label="种花旅途，第 1 步，共 4 步"><span class="current"></span><span></span><span></span><span></span></div>
+      <p id="gardenCopy">峡谷的风，捎来一粒种子。</p>
+      <div id="gardenGrowth" hidden><progress id="gardenGrowthBar" max="30" value="0" aria-label="花朵成长进度"></progress><span id="gardenGrowthText">约 30 秒后开花</span></div>
+      <div id="gardenRest" hidden><progress id="gardenRestBar" max="60" value="0" aria-label="篝火休息进度"></progress><span id="gardenRestText">火边休息 · 还需 60 秒</span></div>
+      <button id="gardenAction" class="garden-action"><span id="gardenActionText">去峡谷散步</span><span aria-hidden="true">↗</span></button>
+      <small id="gardenFootnote"></small>
+      <span id="gardenReward" hidden aria-hidden="true">✧</span>
+      </div>
+    </aside>
+    <div class="map-labels" id="mapLabels" aria-label="地区"></div>
+    <button id="canyonRestore" class="canyon-restore" hidden>修复峡谷 <span>✧</span></button>
+    <button id="campEnter" class="camp-enter" aria-label="进入帐篷营地"><i data-lucide="tent" aria-hidden="true"></i><span>我的营地<small>拖动帐篷搬家</small></span></button>
+    <div class="traveler-dock" aria-label="旅人行动">
+      <div class="traveler-caption"><span class="traveler-spark" aria-hidden="true"></span>白斗篷旅人<span class="traveler-state" id="travelerState" role="status">听风</span></div>
+      <div class="traveler-actions">
+        <button id="travelerCamp" class="traveler-action" aria-pressed="false"><i data-lucide="flame" aria-hidden="true"></i><span>生火休息</span></button>
+        <button id="travelerLocate" class="traveler-locate" aria-label="找到小人" title="找到小人"><i data-lucide="locate-fixed" aria-hidden="true"></i></button>
+      </div>
+      <p id="travelerHelp"><span class="traveler-desktop-help">点击地面 / WASD 漫步 · 拖动旋转</span><span class="traveler-mobile-help">轻点地面漫步 · 拖动旋转</span><span class="traveler-chapter-help">点击地区名称，翻开画作</span></p>
+      <p id="travelerNotice" role="status"></p>
+    </div>
+    <div class="map-status"><span class="status-spark" aria-hidden="true"></span><span id="exploredCount">足迹 00 / 04</span></div>
+    <nav class="map-tools" aria-label="地图视角">
+      <button class="icon-button" id="mapReset" aria-label="回到初始视角" title="回到初始视角"><i data-lucide="compass"></i></button>
+      <span class="tool-divider"></span>
+      <button class="icon-button" id="mapZoomOut" aria-label="缩小地图" title="缩小地图"><i data-lucide="minus"></i></button>
+      <button class="icon-button" id="mapZoomIn" aria-label="放大地图" title="放大地图"><i data-lucide="plus"></i></button>
+    </nav>
+  </section>
+  <section id="gallery" class="screen" aria-label="作品浏览" inert>
+    <div id="artViewport" aria-label="插画">
+      <div id="artMotion"><img id="galleryImage" alt="" draggable="false"><div id="artLiving" aria-hidden="true"></div><div id="artHotspots"></div></div>
+    </div>
+    <div class="gallery-vignette" aria-hidden="true"></div>
+    <div id="galleryCurtain" aria-hidden="true"></div>
+    <header class="art-header gallery-chrome">
+      <button class="art-tool" id="galleryMap" aria-label="返回地图" title="返回地图"><i data-lucide="arrow-left"></i></button>
+      <div class="art-chapter"><span class="chapter-overline">THE QUIET LANDS</span><span id="galleryChapter"></span></div>
+      <div class="art-tools">
+        <button class="art-tool" id="viewMotion" aria-label="暂停画面动效" title="暂停画面动效" aria-pressed="true" hidden><i data-lucide="pause"></i></button>
+        <button class="art-tool" id="viewWhole" aria-label="查看完整原画" title="查看完整原画" aria-pressed="false"><i data-lucide="scan"></i></button>
+        <button class="art-tool" id="viewNotes" aria-label="作品手记" title="作品手记" aria-pressed="false"><i data-lucide="book-open"></i></button>
+        <button class="art-tool" id="gallerySound" aria-label="开启环境声音" title="开启环境声音" aria-pressed="false"><i data-lucide="volume-x"></i></button>
+        <button class="art-tool" id="viewFullscreen" aria-label="全屏观看" title="全屏观看" aria-pressed="false"><i data-lucide="maximize"></i></button>
+      </div>
+    </header>
+    <div class="art-caption gallery-chrome"><span class="caption-kicker">旅途拾光</span><h2 id="galleryTitle"></h2><p id="galleryDesc"></p></div>
+    <aside id="storyPanel" aria-labelledby="storyTitle" hidden>
+      <span class="story-kicker">峡谷手记</span><button class="art-tool" id="storyClose" aria-label="收起手记" title="收起手记"><i data-lucide="x"></i></button>
+      <h3 id="storyTitle"></h3><p id="storyText"></p>
+    </aside>
+    <button id="galleryReturnLight" class="gallery-return-light" hidden><i data-lucide="feather"></i><span>风从来处来</span><small>返回地图</small></button>
+    <footer class="art-footer gallery-chrome">
+      <nav class="art-navigation" aria-label="章节行迹">
+        <button class="art-tool" id="prev" aria-label="上一幅作品" title="上一幅作品"><i data-lucide="arrow-left"></i></button>
+        <div id="galleryProgress" aria-label="本章作品"></div>
+        <button class="art-tool" id="next" aria-label="下一幅作品" title="下一幅作品"><i data-lucide="arrow-right"></i></button>
+      </nav>
+      <div class="art-counter" id="counter" aria-live="polite"></div>
+    </footer>
+    <div id="galleryError" role="status" hidden><p>这幅画暂时未能抵达。</p><button id="galleryRetry">再试一次</button></div>
+  </section>
+  <div id="passage" aria-hidden="true"></div>
+  <p class="scene-error" id="sceneError" hidden>风暂时停下了。<button onclick="location.reload()">重新启程</button></p>
+  <script src="./door-scene.js"></script>
+  <script src="./map-landmarks.js?v=grove-2"></script>
+  <script src="./map-navigation.js?v=journey-3"></script>
+  <script src="./tent-placement.js?v=journey-3"></script>
+  <script src="./map-traveler.js?v=grove-2"></script>
+  <script src="./map-explorer.js?v=journey-3"></script>
+  <script src="./garden-store.js?v=journey-3"></script>
+  <script src="./garden-journal.js?v=journey-3"></script>
+  <script src="./garden-scene.js?v=grove-2"></script>
+  <script src="./garden-game.js?v=journey-3"></script>
+  <script src="./map-restoration.js?v=journey-3"></script>
+  <script src="./camp-scene.js?v=journey-3"></script>
+  <script src="./map-scene.js?v=journey-3"></script>
+  <script src="./gallery-audio.js"></script>
+  <script src="./living-artwork.js"></script>
+  <script src="./gallery-view.js"></script>
+  <script src="./journey.js"></script>
+  <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+  <script type="module">
+    try {
+      const [THREE, { OrbitControls }] = await Promise.all([
+        import('three'), import('https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js')
+      ]);
+      window.createDoorScene(THREE, document.getElementById('doorCanvas'));
+      function prepareMap() {
+        try {
+          if (!window.journeyMap) window.journeyMap = window.createMapScene(THREE, OrbitControls, document.getElementById('mapCanvas'), window.journeyChapters);
+        } catch(error) {
+          console.error('Unable to create the map:', error);
+          document.getElementById('sceneError').hidden = false;
+        }
+      }
+      document.addEventListener('journey:entered', prepareMap);
+      document.addEventListener('journey:screen', event => { if (event.detail.screen === 'map') prepareMap(); });
+    } catch (error) {
+      console.error('Unable to create the journey scenes:', error);
+      document.getElementById('sceneError').hidden = false;
+    }
+  </script>
+</body>
+</html>

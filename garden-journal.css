@@ -1,0 +1,82 @@
+.garden-journal{--journal-paper:#f4eddb;--journal-ink:#515d48;--journal-faint:#798168;width:min(740px,calc(100vw - 68px));max-width:none;max-height:calc(100dvh - 62px);margin:auto;padding:0;border:0;background:transparent;color:var(--journal-ink);overflow:visible;font-family:'Noto Serif SC','Songti SC',serif}
+.garden-journal::backdrop{background:#283f366b;backdrop-filter:blur(6px)}
+.garden-journal [hidden]{display:none!important}
+.garden-book{position:relative;display:flex;flex-direction:column;height:min(540px,calc(100dvh - 62px));padding:0 5px;border:6px solid #78836a;border-left-width:11px;border-radius:12px 18px 18px 12px;background:var(--journal-paper);box-shadow:0 22px 65px #1d362c40,0 3px 0 #58694f,inset 0 0 0 1px #faf5e5;isolation:isolate}
+.garden-book:before{content:"";position:absolute;z-index:3;inset:0;border-radius:5px 11px 11px 5px;pointer-events:none;opacity:.22;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='paper'%3E%3CfeTurbulence baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='.25'/%3E%3C/svg%3E")}
+.garden-book:after{content:"";position:absolute;inset:-3px;border:1px dashed #ecebd240;border-radius:8px 14px 14px 8px;pointer-events:none}
+.garden-book-ribbon{position:absolute;z-index:4;top:-7px;right:72px;display:flex;justify-content:center;align-items:flex-end;width:26px;height:54px;padding-bottom:13px;clip-path:polygon(0 0,100% 0,100% 100%,50% 87%,0 100%);background:#b89473;box-shadow:inset 4px 0 #d5bd942f;color:#f2e7c9}
+.garden-book-ribbon span{font:11px Georgia,serif}
+.garden-book-heading{position:relative;display:flex;align-items:center;justify-content:space-between;padding:20px 20px 12px 24px;flex-shrink:0}
+.garden-book-title{display:flex;align-items:center;gap:12px}
+.garden-book-emblem{display:grid;place-items:center;width:29px;height:36px;color:#899171}.garden-book-emblem svg{width:25px;height:33px}
+.garden-book-kicker{display:block;font:7px Georgia,serif;letter-spacing:.17em;color:#989579}
+.garden-book-heading h2{font-size:19px;font-weight:500;letter-spacing:.18em;margin:5px 0 0}
+.garden-journal-close,.garden-original-close{display:grid;place-items:center;width:36px;height:36px;border:1px solid #a4a78940;border-radius:50%;background:transparent;flex-shrink:0;color:#7c826b;transition:background .6s var(--ease)}
+.garden-journal-close:hover{background:#a0a7831c}.garden-journal-close svg{width:15px;height:15px}
+.garden-journal button:focus-visible{outline:2px solid #8d996f;outline-offset:3px}
+.garden-pages{display:grid;grid-template-columns:.78fr 1.22fr;grid-template-rows:minmax(0,1fr);min-height:0;flex:1;overflow:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#aab18e transparent}
+.garden-page{position:relative;min-width:0;padding:12px 23px 18px}
+.garden-keepsakes{display:flex;flex-direction:column;background:linear-gradient(90deg,transparent 92%,#897d5914);border-right:1px solid #9c926627;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#b5b99b transparent}
+.garden-page-eyebrow{font-size:9px;line-height:1.8;color:var(--journal-faint);margin:0 0 20px;letter-spacing:.06em}
+.garden-page h3{margin:0;font-size:12px;font-weight:500;letter-spacing:.12em}
+.garden-seed-item{display:flex;align-items:center;gap:10px;margin:10px 0 12px}
+.garden-seed-drawing{width:43px;height:60px;flex:none;color:#71805e;opacity:.54}
+.garden-seed-drawing svg{display:block;width:100%;height:100%}
+.garden-seed-item[data-has-seed="true"] .garden-seed-drawing{opacity:1}
+.garden-item-name{font-size:10px;line-height:1.8;margin:0 0 4px;white-space:nowrap}
+.garden-seed-count{color:#a08859;font-size:10px;margin-left:5px;font-variant-numeric:tabular-nums}
+.garden-item-note{font-size:10px;line-height:1.9;margin:0;color:var(--journal-faint);max-width:140px}
+.garden-flower-record{display:flex;align-items:center;gap:12px;padding-top:2px}
+.garden-flower-stamps{display:flex;gap:11px;align-items:center}.garden-flower-stamps>span{display:block;color:#b8b9a1}.garden-flower-stamps svg{display:block;width:19px;height:26px}.garden-flower-stamps>[data-state="planted"]{color:#869773}.garden-flower-stamps>[data-state="bloomed"]{color:#a69361}
+.garden-flower-count{font-size:9px;color:#929177;white-space:nowrap;font-variant-numeric:tabular-nums}
+.garden-restoration-note{font-size:9px;line-height:1.9;color:#85866b;margin:9px 0 0}.garden-restoration-note[data-restored="true"]{color:#71825a}
+.garden-pressed-line{height:16px;display:flex;align-items:center;gap:11px;color:#b2a581;margin:13px 0 11px}
+.garden-pressed-line:before,.garden-pressed-line:after{content:"";height:1px;background:linear-gradient(90deg,transparent,#b1aa834d);flex:1}.garden-pressed-line:after{transform:rotate(180deg)}.garden-pressed-line span{font-size:8px}
+.garden-page .garden-index-title{font-size:10px;letter-spacing:.16em}
+.garden-entry-link{display:flex;align-items:center;gap:11px;text-align:left;padding:12px 0 9px;background:transparent;border:0;width:100%;font-size:11px;line-height:1.6;transition:color .6s var(--ease)}
+.garden-entry-link:hover:not(:disabled){color:#7c8d56}.garden-entry-link:disabled{opacity:.57}
+.garden-entry-index{margin-top:3px}.garden-entry-index .garden-entry-link{padding:8px 0;gap:9px;border-bottom:1px solid #a4a18020}.garden-entry-index .garden-entry-link:last-child{border-bottom:0}.garden-entry-link[data-unlocked="false"]{color:#9ca28c}.garden-entry-link[aria-current="page"]{color:#647d53}.garden-entry-link[aria-current="page"] .garden-entry-number{color:#7c8c5f}.garden-entry-link[data-unlocked="false"] .garden-entry-condition{color:#a3a58d}
+.garden-entry-index .garden-entry-link>span:nth-child(2){display:flex;align-items:center;gap:7px;flex:1;flex-wrap:wrap}.garden-entry-index .garden-entry-condition{font-size:8px;line-height:1.6;margin-top:0;letter-spacing:0}
+.garden-entry-number{align-self:flex-start;margin-top:2px;font:11px Georgia,serif;font-style:italic;color:#a9a083}
+.garden-entry-condition{display:block;font-size:9px;color:var(--journal-faint);margin-top:3px;font-weight:400;letter-spacing:.04em}
+.garden-entry-mark{margin-left:auto;color:#929b7b;font-size:15px}
+.garden-keepsake-verse{position:relative;font-size:9px;line-height:2.1;color:#a1a08a;margin:auto 0 0;padding-top:15px;letter-spacing:.08em}
+.garden-page-sprig{position:absolute;right:12px;bottom:5px;width:64px;height:64px;color:#b2b795;opacity:.7;transform:rotate(-10deg);pointer-events:none}.garden-page-sprig svg{width:100%;height:100%}
+.garden-memory{display:flex;flex-direction:column;min-height:0;overflow:hidden;padding:12px 25px 17px;background:linear-gradient(90deg,#8575490a,transparent 7%)}
+.garden-memory-empty{display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;min-height:310px;width:100%;border:1px solid #a3a07b2b;border-radius:45% 45% 5px 5px/25% 25% 5px 5px;margin:7px 5px 0;padding:16px 18px 12px}
+.garden-memory-label{font-size:8px;letter-spacing:.12em;color:var(--journal-faint)}
+.garden-memory-empty>.garden-memory-label{font:7px Georgia,serif;letter-spacing:.16em}
+.garden-flower-drawing{width:120px;height:145px;color:#91a079;margin:17px 0 5px;opacity:.82}.garden-flower-drawing svg{width:100%;height:100%}
+.garden-empty-heading{font-size:14px;letter-spacing:.13em;margin:0 0 10px}.garden-empty-note{font-size:10px;line-height:2;color:#7e886e;max-width:180px;margin:0 0 23px}
+.garden-page-number{font:10px Georgia,serif;font-style:italic;color:#a9a185;flex:none}
+.garden-memory-entry{display:flex;flex-direction:column;min-width:0;min-height:0;width:100%;flex:1}
+.garden-page-turner{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;flex-shrink:0}.garden-page-turner button{display:grid;place-items:center;width:28px;height:28px;padding:0;border:0;background:transparent;color:#7e8a67;font:17px Georgia,serif}.garden-page-turner button:disabled{opacity:.27;cursor:default}.garden-page-position{font:9px Georgia,serif;font-style:italic;letter-spacing:0;color:#9d9c82;font-variant-numeric:tabular-nums}
+.garden-entry-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-shrink:0}
+.garden-entry-seal{position:relative;width:24px;height:24px;display:grid;place-items:center;border:1px solid #b8987b;border-radius:50% 47% 51% 46%;color:#eee1c8;background:#b99b7b;box-shadow:inset 0 0 0 2px #e8d5b64d,1px 2px 3px #80644318;font-size:13px;transform:rotate(-13deg)}
+.garden-art-button{position:relative;display:block;flex:1;min-height:170px;min-width:0;width:100%;border:0;padding:0;background:transparent;cursor:zoom-in}
+.garden-memory-art{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:contain;filter:saturate(.94);border-radius:1px}
+.garden-art-button:after{content:"展开风景 ↗";position:absolute;bottom:7px;left:50%;transform:translateX(-50%) translateY(3px);border-radius:20px;padding:6px 11px;font-size:8px;white-space:nowrap;background:#f2ebdcd9;color:#69765b;opacity:0;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.garden-art-button:hover:after,.garden-art-button:focus-visible:after{opacity:1;transform:translateX(-50%) translateY(0)}
+.garden-memory-caption{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:11px;flex-shrink:0}.garden-memory-caption h3{font-size:15px;letter-spacing:.13em}.garden-memory-caption p{font-size:9px;line-height:1.9;color:#96947b;margin:5px 0 0}.garden-memory-caption .garden-page-number{padding-bottom:3px}
+.garden-image-error{display:flex;flex:1;min-height:170px;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#7d8868;font-size:10px}.garden-image-retry{padding:8px 11px;background:transparent;border:1px solid #98a27b60;border-radius:14px;font-size:9px}
+.garden-book-footer{position:relative;display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0 17px;padding:10px 6px 11px;border-top:1px solid #a4a1802e;flex-shrink:0;min-height:38px}
+.garden-save-note{margin:0;font-size:8px;line-height:1.8;color:#a1a18a}.garden-save-note:before{content:"·";margin-right:6px;color:#a6aa7f}.garden-reset-open{background:none;border:0;padding:5px 0;font-size:8px;color:#a29c86;text-decoration:underline;text-decoration-color:#aca18c55;text-underline-offset:4px;white-space:nowrap}
+.garden-reset-confirm{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%}.garden-reset-confirm p{font-size:10px;line-height:1.8;margin:0;color:#737c60}.garden-reset-confirm small{display:block;font-size:8px;color:#969b81;margin-top:3px}.garden-reset-confirm>div{display:flex;gap:8px;flex-shrink:0}.garden-reset-confirm button{font-size:9px;padding:9px 11px;border:1px solid #919b7355;border-radius:16px;background:transparent}.garden-reset-confirm .garden-reset-yes{background:#7d8b6720}.garden-book-footer:has(.garden-reset-confirm:not([hidden]))>.garden-save-note{display:none}
+.garden-journal--original{width:min(1180px,calc(100vw - 40px));height:calc(100dvh - 40px);max-height:none}
+.garden-original{display:flex;flex-direction:column;width:100%;height:100%;background:#eee9d8;border:5px solid #7e896e;border-radius:9px;overflow:hidden;box-shadow:0 24px 100px #132a3255}
+.garden-original header{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:8px 17px;flex-shrink:0}.garden-original header>span{font-size:9px;color:#93917a}.garden-original-back{padding:10px 0;border:0;background:none;font-size:11px}.garden-original-close{font-size:13px;width:32px;height:32px}.garden-original-art{display:block;flex:1;min-height:0;min-width:0;width:100%;object-fit:contain;padding:0 16px 16px}
+.garden-journal[open] .garden-book{animation:garden-book-open 650ms cubic-bezier(.22,1,.36,1) both}@keyframes garden-book-open{from{opacity:0;transform:translateY(10px) rotate(-.6deg) scale(.985)}to{opacity:1;transform:none}}
+@media(max-width:600px){
+ .garden-journal{width:min(410px,calc(100vw - 34px));max-height:calc(100dvh - 38px)}.garden-book{height:min(650px,calc(100dvh - 38px));border-width:5px;border-left-width:8px;border-radius:9px 14px 14px 9px;padding:0 3px}
+ .garden-book-heading{padding:15px 12px 12px 15px}.garden-book-title{gap:9px}.garden-book-emblem{width:22px;height:30px}.garden-book-emblem svg{width:21px;height:27px}.garden-book-kicker{font-size:6px}.garden-book-heading h2{font-size:17px;margin-top:5px}.garden-journal-close{width:34px;height:34px}.garden-book-ribbon{right:55px;width:19px;height:42px;padding-bottom:11px}.garden-book-ribbon span{font-size:9px}
+ .garden-pages{display:block;overflow-y:auto}.garden-page{padding:10px 17px 14px}.garden-keepsakes{display:grid;grid-template-columns:1fr auto;column-gap:12px;border-right:0;border-bottom:1px solid #a4a1802e;background:transparent}
+ .garden-page-eyebrow{grid-column:1/-1;font-size:8px;margin:0 0 12px}.garden-page h3{font-size:11px}.garden-keepsakes>h3:first-of-type{grid-column:1}.garden-seed-item{grid-column:1;grid-row:3;margin:5px 0 8px;gap:8px}.garden-seed-drawing{height:40px;width:31px}.garden-item-name{font-size:9px;margin-bottom:1px}.garden-item-note{font-size:8px;max-width:143px}.garden-seed-count{font-size:9px;margin-left:3px}
+ .garden-flower-record{grid-column:2;grid-row:2/4;flex-direction:column;justify-content:center;gap:5px;padding:0}.garden-flower-stamps{gap:5px}.garden-flower-stamps svg{width:16px;height:22px}.garden-flower-count{font-size:8px}.garden-restoration-note{grid-column:1/-1;margin:0;font-size:8px}
+ .garden-pressed-line,.garden-page .garden-index-title,.garden-keepsake-verse,.garden-page-sprig{display:none}.garden-entry-index{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:9px;border-top:1px dashed #a4a18030}.garden-entry-index .garden-entry-link{position:relative;align-items:flex-start;gap:0;margin:0;padding:10px 0 2px;border:0;font-size:10px;min-width:0}.garden-entry-number{display:none}.garden-entry-index .garden-entry-link>span:nth-child(2){display:block;min-width:0;flex:1}.garden-entry-index .garden-entry-condition{font-size:7px;line-height:1.8;margin:3px 0 0;letter-spacing:0}.garden-entry-mark{font-size:10px;flex:none;margin-left:3px}
+ .garden-memory{padding:17px 20px 19px;background:none;overflow:visible}.garden-memory-empty{min-height:260px;margin:0 7px;padding:16px}.garden-flower-drawing{height:103px;width:88px;margin:12px 0 5px}.garden-empty-heading{font-size:13px}.garden-empty-note{font-size:9px;max-width:200px;margin-bottom:15px}.garden-memory-label{font-size:7px}
+ .garden-memory-entry{height:auto}.garden-art-button{height:255px;flex:none;min-height:0}.garden-art-button:after{display:none}.garden-entry-heading{margin-bottom:9px}.garden-entry-seal{width:21px;height:21px;font-size:11px}.garden-memory-caption{padding-top:12px}.garden-memory-caption h3{font-size:14px}.garden-memory-caption p{font-size:8px}
+ .garden-book-footer{padding:8px 0 9px;margin:0 15px;gap:9px;min-height:34px}.garden-save-note{font-size:7px;max-width:190px}.garden-reset-open{font-size:7px}.garden-reset-confirm{flex-direction:column;align-items:flex-start;gap:8px}.garden-reset-confirm>div{justify-content:flex-end;width:100%}.garden-reset-confirm button{min-height:34px;font-size:9px}
+ .garden-journal--original{width:calc(100vw - 20px);height:calc(100dvh - 24px);max-height:none}.garden-original header{padding:6px 10px;gap:8px}.garden-original header>span{font-size:8px}.garden-original-back{font-size:10px}.garden-original-art{padding:0 8px 12px}
+}
+@media(max-height:590px) and (min-width:601px){.garden-book-heading{padding-top:12px;padding-bottom:9px}.garden-page{padding-top:10px;padding-bottom:12px}.garden-page-eyebrow{margin-bottom:13px}.garden-seed-item{margin:5px 0 8px}.garden-seed-drawing{height:46px}.garden-keepsake-verse{display:none}.garden-page-sprig{opacity:.4}.garden-pressed-line{margin:8px 0}.garden-memory-empty{min-height:245px;margin-top:0;padding:10px}.garden-flower-drawing{height:90px;width:80px;margin:11px 0 4px}.garden-empty-note{font-size:8px;margin-bottom:14px}.garden-memory-entry{min-height:0}.garden-art-button{min-height:90px}.garden-book-footer{padding-top:7px;padding-bottom:7px}}
+@media(prefers-reduced-motion:reduce){.garden-journal[open] .garden-book{animation:none}.garden-journal *{scroll-behavior:auto!important;transition:none!important}}
